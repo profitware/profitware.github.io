@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- DEFAULT VARIABLES -->
+    <meta name="color:Background" content="#3b627e" />
+    
+    <meta name="font:Title" content="Arial" />
+    <meta name="font:Body" content="Arial" />
+    <meta name="font:Accent" content="Lucida Sans" />
+    
+    <meta name="if:Show People I Follow" content="1" />
+    <meta name="if:Show Tags" content="1" />
+    <meta name="if:Show Sharing Features" content="1" />
+    <meta name="if:Show Album Art on Audio Posts" content="1" />
+    <meta name="if:Enable Jump Pagination" content="0" />
+    
+    <meta name="text:Disqus Shortname" content="bug2bug" />
+    <meta name="text:Flattr Username" content="bug2bug" />
+    
+    <meta name="image:Header" content="" />
+    <meta name="image:Background" content="" />
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>{Title}{block:SearchPage}, {lang:Search results for SearchQuery}{/block:SearchPage}{block:PostSummary}, {PostSummary}{/block:PostSummary}</title>
+    <!--  {block:Description}  --><meta name="description" content="{MetaDescription}" /><!-- {/block:Description}  -->
+    <link rel="shortcut icon" href="{Favicon}" />
+    <link rel="apple-touch-icon" href="{PortraitURL-128}"/>
+    <link rel="alternate" type="application/rss+xml" href="{RSS}" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap-responsive.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/css-social-buttons/1.3.0/css/zocial.min.css">
+    <style type="text/css">
+    /* Tweak navbar brand link to be super sleek
+    -------------------------------------------------- */
+    .navbar-fixed-top .brand {
+      padding-right: 200px;
+      padding-left: 0;
+      /* margin-left: 20px; */
+      float: right;
+      font-weight: bold;
+      color: #000;
+      text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+      -webkit-transition: all .2s linear;
+         -moz-transition: all .2s linear;
+              transition: all .2s linear;
+    }
+    .navbar-fixed-top .brand:hover {
+      text-decoration: none;
+    }
+    
+    .padding60 {
+      padding-top: 60px;
+    }
+
+    .padding40 {
+      padding-top: 40px;
+    }
+    
+    .padding30 {
+      padding-top: 30px;
+    }
+    
+    .padding20 {
+      padding-top: 20px;
+    }
+    
+    div .bavatar {
+      padding: 8px 10px 10px 9px;
+      position: relative;
+      top: -40px;
+      float: right;
+    }
+    
+    p.atext {
+      position: relative;
+      top: 10px;
+      left: 0px;
+    }
+    
+    a.tagblack {
+      color: #ffffff!important;
+      text-shadow: none!important;
+    }
+    
+    a.tagblack:hover {
+      text-decoration: none!important;
+    }
+    
+    body {
+        background-color: {color:Content Background};
+    }
+    
+    div.post {
+        min-height:150px;
+        height:auto !important;
+        height:150px; 
+    }
+    
+    a.source_url {
+       position:relative;
+       float:right;
+       top:130px;
+       right: -140px;
+       max-width: 128px;
+    }
+    
+    div.title {
+     font-size: 16px;
+     font-weight: bold;
+     padding-bottom: 20px;
+    }
+    
+    .btn-navbar-left {
+      float:left!important;
+    }
+
+    .tags {
+      max-width: 400px;
+      display:block!important;
+    }
+    
+    img.favatar {
+      margin: 2px 2px 2px 2px;
+      padding-bottom: 2px;
+    }
+    
+    div#following {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    
+    div#following-avatars {
+        padding-top: 3px;
+        padding-left: 15px;
+    }
+    
+    ul#likes {
+        list-style-type: none;
+        padding-top: 3px;
+        padding-left: 15px;
+        margin: 0 0 0 0;
+    }
+
+    li.like_post {
+        padding: 0 0 20px 0;
+    }
+
+    li.like_post img {
+        max-width: 100%;
+    }
+
+    li.like_post blockquote {
+        margin: 0;
+        padding: 0 0 0 10px;
+        border-left: 1px solid #eee;
+    }
+
+    li.like_post ol,
+    li.like_post ul {
+        margin: 0 0 0 15px;
+        padding: 0;
+    }
+
+    li.like_post .like_link a {
+        font-weight: bold;
+    }
+
+    li.like_post .like_title {
+        font-weight: bold;
+    }
+
+    li.like_post .post_info_bottom {
+        margin: 10px 0 0 0;
+    }
+    
+    div.like_caption {
+        display: none!important;
+    }
+    
+    p.resume_image {
+        padding-right: 20px;
+        float: left;
+    }
+    
+    div.large_tumbnail {
+        min-height: 620px;   
+    }
+
+    div.large_tumbnail_f {
+        min-height: 520px;   
+    }
+
+    </style>
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-35381810-1']);
+      _gaq.push(['_trackPageview']);
+      
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+      
+    </script>
+    
+    {block:IfFlattrUsername}
+        <script type="text/javascript" src="https://api.flattr.com/js/0.6/load.js?mode=auto&button=compact&popout=0&category=rest&language=ru_RU&uid={text:Flattr Username}" async="true"></script>
+    {/block:IfFlattrUsername}
+    
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <button type="button" class="btn btn-navbar btn-navbar-left" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="brand" href="/">{Title}</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li class="">
+                <a href="https://bug2bug.ru/" id="menu_about">About</a>
+              </li>
+              <li class="active">
+                <a href="https://t.bug2bug.ru/" id="menu_tlog">Tlog</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="clear padding60"></div>
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="span8">
+          <div class="clear padding30"></div>
+            {block:SearchPage}
+                {block:SearchResults}
+                    <div id="searchresults">{lang:SearchResultCount results for SearchQuery 2}</div>
+                {/block:SearchResults}
+                
+                {block:NoSearchResults}
+                    <div id="searchresults">{lang:No search results for SearchQuery 2}</div>
+                {/block:NoSearchResults}
+            {/block:SearchPage}
+            
+            {block:Posts}
+                <div class="post well">
+                    {block:Reblog}
+                      <div class="bavatar visible-desktop">
+                        <a href="{ReblogRootURL}">
+                          <img src="{ReblogRootPortraitURL-128}">
+                        </a>
+                        <div class="clear padding30"></div>
+                      </div>
+                    {/block:Reblog}
+                    {block:NotReblog}
+                      <div class="bavatar visible-desktop">
+                        <a href="/">
+                          <img src="{PortraitURL-128}">
+                        </a>
+                        <div class="clear padding30"></div>
+                      </div>
+                    {/block:NotReblog}
+                    
+                    {block:ContentSource}
+                            <a href="{SourceURL}" class="source_url visible-desktop" style="display: none;">
+                                {lang:Source}:
+                                {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}
+                                {block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
+                            </a>
+                    {/block:ContentSource}
+                    
+                    
+                    {block:Photo}
+                        <div class="media"><ul class="thumbnails"><li class="thumbnail">{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}</li></ul></div>
+                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+                    {/block:Photo}
+                    
+                    {block:Video}
+                        <div class="media">{Video-500}</div>
+                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+                    {/block:Video}
+                    
+                    {block:Audio}
+                        
+                        {block:AudioEmbed}
+                            {AudioEmbed}
+                        {/block:AudioEmbed}
+                        
+                        {block:AudioPlayer}
+                            {block:IfShowAlbumArtOnAudioPosts}
+                                {block:AlbumArt}
+                                    <div class="album_art">
+                                        <img src="{AlbumArtURL}" alt="{block:Artist}{Artist}{/block:Artist}{block:TrackName} - {TrackName}{/block:TrackName}" style="margin-bottom:10px;" />
+                                    </div>
+                                {/block:AlbumArt}
+                            {/block:IfShowAlbumArtOnAudioPosts}
+                        
+                            <div class="audio">
+                                <div class="player">{AudioPlayerWhite}</div>
+                                <div class="meta">{block:PlayCount}{PlayCountWithLabel}{/block:PlayCount}{block:ExternalAudio}<span class="download_external_audio"> &bull; <a href="{ExternalAudioURL}">{lang:Download}</a></span>{/block:ExternalAudio}</div>
+                                <div class="clear"></div>
+                            </div>
+                        {/block:AudioPlayer}
+                        
+                        <div class="clear"></div>
+                        
+                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+                        
+                    {/block:Audio}
+                    
+                    {block:Quote}
+                        <blockquote>
+                            <p>{Quote}</p>
+                            {block:Source}
+                            <small>{Source}</small>
+                            {/block:Source}
+                        </blockquote>
+                    {/block:Quote}
+                        
+                    {block:Text}
+                        {block:Title}<div class="title">{Title}</div>{/block:Title}
+                        <div class="copy">{Body}</div>
+                    {/block:Text}
+                    
+                    {block:Answer}
+                        <div class="question">
+                            <div class="nipple"></div>
+                            {Question}
+                        </div>
+                        <div class="asker_container"><img src="{AskerPortraitURL-24}">{Asker}</div>
+                        <div class="copy">{Answer}</div>
+                    {/block:Answer}
+                    
+                    {block:Chat}
+                        {block:Title}<div class="title">{Title}</div>{/block:Title}
+                        <div class="chat">
+                            <div class="lines">
+                                {block:Lines}
+                                    <div class="line {Alt}">{block:Label}<strong>{Label}</strong>{/block:Label} {Line}</div>
+                                {/block:Lines}
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div style="height:10px;"></div>
+                    {/block:Chat}
+                    
+                    {block:Link}
+                        <div class="link"><a href="{URL}" {Target}>{Name} &raquo;</a></div>
+                        {block:Description}<div class="copy">{Description}</div>{/block:Description}
+                    {/block:Link}
+                    
+                    {block:Date}
+                        <a href="{Permalink}">
+                            <div class="footer for_permalink">
+                                <div class="date">
+                                    {block:NotReblog}
+                                        {lang:Posted TimeAgo from source}
+                                    {/block:NotReblog}
+                                </div>
+                                <div class="notes">{block:NoteCount}{NoteCountWithLabel}{/block:NoteCount} {block:IfDisqusShortname}{block:NoteCount}&bull;{/block:NoteCount} <a href="{Permalink}#disqus_thread">{lang:View comments}</a>{/block:IfDisqusShortname}</div>
+                                <div class="clear"></div>
+                            </div>
+                        </a>
+                    {/block:Date}
+                    
+                    <div class="footer {block:ContentSource}with_source_url{/block:ContentSource}" style="
+                        display:none;
+                        {block:IfShowTags}{block:HasTags}display:block;{/block:HasTags}{/block:IfShowTags}
+                        {block:ContentSource}display:block;{/block:ContentSource}
+                    ">
+                    
+                        {block:ContentSource}
+                            <a href="{SourceURL}" class="hidden-desktop">
+                                {lang:Source}:
+                                {block:SourceLogo}<img src="{BlackLogoURL}" width="{LogoWidth}" height="{LogoHeight}" alt="{SourceTitle}" />{/block:SourceLogo}
+                                {block:NoSourceLogo}{SourceTitle}{/block:NoSourceLogo}
+                            </a>
+                        {/block:ContentSource}
+                    
+                        {block:IfShowTags}
+                            {block:HasTags}<div class="tags">{lang:Tagged}: {block:Tags}<span class="label label-success"><a class="tagblack" href="{TagURL}">{Tag}</a></span>&nbsp;{/block:Tags}</div>{/block:HasTags}
+                        {/block:IfShowTags}
+                        
+                        <div class="clear"></div>
+                    </div>
+                    
+                    {block:PostNotes}<div class="notecontainer">{PostNotes}</div>{/block:PostNotes}
+                    
+                    {block:IfDisqusShortname}
+                        {block:Permalink}
+                            <div class="notecontainer" style="margin:20px 0 1px 0; padding:1px 10px 10px 10px;">
+                                <div id="disqus_thread"></div>
+                                <script type="text/javascript" src="https://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+                                <noscript><a href="https://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                            </div>
+                            <div style="text-align:right; margin-top:5px;">
+                                {lang:Blog comments powered by Disqus 2}
+                            </div>
+                        {/block:Permalink}
+                    {/block:IfDisqusShortname}
+                    
+                </div>
+                {block:IfShowSharingFeatures}
+                    {block:IfFlattrUsername}
+                        <a class="FlattrButton" href="{Permalink}" title="{block:Text}{PlaintextTitle}{/block:Text}{block:Photo}Photo{block:Caption}: {PhotoAlt}{/block:Caption}{/block:Photo}{block:Quote}Quote{/block:Quote}{block:Link}{PlaintextName}{/block:Link}{block:Chat}Chat{/block:Chat}{block:Audio}Audio{/block:Audio}{block:Video}Video{/block:Video}{block:Answer}Question & Answer{/block:Answer}" style="display: none;">{block:Text}{PlaintextBody}{/block:Text}{block:Photo}{PlaintextCaption}{/block:Photo}{block:Quote}{PlaintextQuote}{block:Source} – {PlaintextSource}{/block:Source}{/block:Quote}{block:Link}{PlaintextDescription}{/block:Link}{block:Chat}{PlaintextTitle}{/block:Chat}{block:Audio}{PlaintextCaption}{/block:Audio}{block:Video}{PlaintextCaption}{/block:Video}{block:Answer}Question: {PlaintextQuestion}
+Answer: {PlaintextAnswer}{/block:Answer}</a>
+                    {/block:IfFlattrUsername}
+                    <a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal"{block:IndexPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:IndexPage}{block:SearchPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:SearchPage}{block:TagPage} data-text="{block:Text}{block:Title}{PlaintextTitle}{/block:Title}{/block:Text}{block:Chat}{block:Title}{PlaintextTitle}{/block:Title}{/block:Chat}{block:Link}{Name}{/block:Link}"{/block:TagPage} data-url="{Permalink}" data-via="IwasakiRussia" data-lang="ru"></a>
+                {/block:IfShowSharingFeatures}
+                <div class="clear"></div>
+                <hr>
+                <div class="clear padding30"></div>
+            {/block:Posts}
+                            
+            {block:Pagination}
+                <div id="navigation" class="pagination">
+                  <ul>
+                    {block:PreviousPage}<li><a href="{PreviousPage}">&larr; {lang:Previous page}</a></li>{/block:PreviousPage}
+                    
+                    {block:IfEnableJumpPagination}
+                        {block:JumpPagination length="5"}
+                            {block:CurrentPage}
+                                <li class="active"><a href="#">{PageNumber}</a></li>
+                            {/block:CurrentPage}
+                            
+                            {block:JumpPage}
+                                <li><a class="jump_page" href="{URL}">{PageNumber}</li></a>
+                            {/block:JumpPage}
+                            
+                        {/block:JumpPagination}
+                    {/block:IfEnableJumpPagination}
+                    
+                    {block:NextPage}<li><a href="{NextPage}">{lang:Next page} &rarr;</a></li>{/block:NextPage}
+                  </ul>
+                </div>
+            {/block:Pagination}
+            
+       </div>
+        <div class="span4">
+          <div class="clear padding30"></div>
+          <div class="well">
+            <div class="bavatar">
+                <a href="/">
+                    <img src="{PortraitURL-128}">
+                </a>
+                <p class="atext">...Music and Open Source Software Creator / Wake up, Neo...</p>
+            </div>
+            
+            <div class="clear padding30">
+                <a href="https://github.com/profitware" class="zocial icon github">Github profile</a>&nbsp;
+                <a href="https://linkedin.com/in/bug2bug" class="zocial icon linkedin">LinkedIn profile</a>&nbsp;
+                <a href="https://facebook.com/bug2bug" class="zocial icon facebook">Facebook profile</a>&nbsp;
+                <a href="https://twitter.com/IwasakiRussia" class="zocial icon twitter">Twitter profile</a>&nbsp;
+                <a href="https://vk.com/bug2bug" class="zocial vk icon">VKontakte profile</a>&nbsp;
+                <a href="https://www.last.fm/user/BuG2BuG" class="zocial icon lastfm">Last.fm profile</a>
+            </div>
+            <div class="clear padding30">
+                <a href="https://psnprofiles.com/bug2bug"><img src="https://card.psnprofiles.com/1/bug2bug.png" border="0"></a>
+            </div>
+            <div class="clear padding30"></div>
+            
+            <!-- Search form -->
+            <div id="search">
+              <form action="/search" method="get" id="search-form" class="form-search">
+                <input type="hidden" name="t" value="{Name}" />
+                <input type="hidden" name="scope" value="all_of_tumblr" />
+                <input type="text" name="q" class="input-medium search-query" value="{SearchQuery}" />
+                <input type="submit" value="{lang:Search}" class="btn" />
+                <div class="clear"></div>
+              </form>
+            </div>
+            <form id="search-scope" class="form-inline" onsubmit="return false;">
+              <label class="radio" for="search-scope-me" onclick="$('#search-form').attr('action', '/search');">
+                <input type="radio" id="search-scope-me" name="scope" checked onclick="$('#search-form').attr('action', '/search');" /> {lang:My blog}
+              </label>
+              &nbsp;
+              <label class="radio" for="search-scope-all" onclick="$('#search-form').attr('action', 'https://www.tumblr.com/search');">
+                <input type="radio" id="search-scope-all" name="scope" onclick="$('#search-form').attr('action', 'https://www.tumblr.com/search');" /> {lang:All of Tumblr}
+              </label>
+            </form>
+
+            <ul class="nav nav-list">
+              <li class="nav-header">Посмотреть Тумблер как</li>
+              <li><a href="{RSS}"><i class="icon-bookmark"></i> {lang:RSS feed}</a></li>
+              <li><a href="/archive"><i class="icon-book"></i> {lang:Archive}</a></li>
+              <li><a href="/random"><i class="icon-random"></i> {lang:Random}</a></li>
+              <li><a href="/mobile"><i class="icon-hand-right"></i> {lang:Mobile}</a></li>
+            </ul>
+
+            <div class="clear padding30"></div>
+                {block:Twitter}
+                <div id="twitterwrapper" style="display:none;">
+                    <!--  a href="https://twitter.com/{TwitterUsername}" style="text-decoration:none;"><div class="heading" id="twitter"></div></a  -->
+                    <ul id="tweetcontainer" class="nav nav-list"><li class="nav-header">{lang:Latest Tweets}</li></ul>
+                    <script type="text/javascript">
+                        function recent_tweets(data) {
+                            document.getElementById("twitterwrapper").style.display = "block";
+                            for(i = 0; i < data.length; i++) {
+                                document.getElementById("tweetcontainer").innerHTML = document.getElementById("tweetcontainer").innerHTML + '<li><a href="https://twitter.com/{TwitterUsername}/status/' + (data[i].id_str ? data[i].id_str : data[i].id) + '"><i class="icon-retweet"></i> ' + data[i].text + '</a></li>';
+                            }
+                        }
+                    </script>
+                </div>
+                {/block:Twitter}
+                
+                <div class="clear padding30"></div>
+                
+                {block:IfShowPeopleIFollow}
+                    {block:Following}
+                        <ul class="nav nav-list"><li class="nav-header">{lang:Following}</li></ul>
+                        <div id="following-avatars" style="display:none;">
+                            {block:Followed}<a href="{FollowedURL}"><img src="{FollowedPortraitURL-64}" class="favatar" /></a>{/block:Followed}
+                        </div>
+                    {/block:Following}
+                {/block:IfShowPeopleIFollow}
+                
+                <div class="clear padding30"></div>
+                
+                {block:Likes}
+                    <ul class="nav nav-list"><li class="nav-header">{lang:Likes}</li></ul>
+                    {Likes limit="10" summarize="100" width="150"}
+                {/block:Likes}
+                
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <hr>
+
+      <footer>
+        <p style="padding-left: 10px;">&copy; 2012-2018, <a href="https://profitware.ru/">The Profitware Group</a></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('.tags').each(function(index) { 
+            var i = 0; 
+            $(this).children().each(function(index) { 
+                i += $(this).width() + 3; 
+                if((i + $(this).next().width() + 3) > 400) { 
+                    $(this).before('<div class="clear"></div>'); 
+                    i = 0; 
+                }; 
+            });
+        });
+        jQuery.preloadImages = function () {
+            if (typeof arguments[arguments.length - 1] == 'function') {
+                var callback = arguments[arguments.length - 1];
+            } else {
+                var callback = false;
+            }
+            if (typeof arguments[0] == 'object') {
+                var images = arguments[0];
+                var n = images.length;
+            } else {
+                var images = arguments;
+                var n = images.length - 1;
+            }
+            var not_loaded = n;
+            for (var i = 0; i < n; i++) {
+                jQuery(new Image()).attr('src', images[i]).load(function() {
+                    if (--not_loaded < 1 && typeof callback == 'function') {
+                        callback();
+                    }
+                });
+            }
+        }
+        var imgarr = [];
+        $('div#following-avatars > a > img').each(function(index) { imgarr.push($(this).attr('src')); });
+        $.preloadImages(imgarr, function() {
+            $('div#following-avatars').show()
+        });
+        
+        var max_href_len = 15;
+        $('.source_url').each(function() { 
+            (function(x) { 
+                var ctext = $(x).text().split(/\s/).filter(function(a) {
+                    return a; 
+                }); 
+                $(x).text(ctext[0] + ' ' + ctext[1].substring(0, max_href_len) + (ctext[1].length > max_href_len ? '...' : '')); 
+            })(this); 
+        }).show();;
+        
+    });
+
+    </script>
+
+    {block:Twitter}
+        <script type="text/javascript" src="/tweets.js"></script>
+    {/block:Twitter}
+
+</body>
+</html>
