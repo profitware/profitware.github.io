@@ -163,3 +163,8 @@ div.large_tumbnail {
 div.large_tumbnail_f {
     min-height: 520px;   
 }
+
+.tmblr-iframe--unified-controls {
+    z-index: 2000 !important;
+    margin-top: -7px !important;
+}
