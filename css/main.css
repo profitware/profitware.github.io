@@ -1,5 +1,11 @@
 /* Tweak navbar brand link to be super sleek
    -------------------------------------------------- */
+@media screen and (max-width: 600px) {
+  .navbar-fixed-top .brand {
+    padding-right: 0px!important;
+    margin-right: 5px!important;
+  }
+}
 .navbar-fixed-top .brand {
     padding-right: 200px;
     padding-left: 0;
