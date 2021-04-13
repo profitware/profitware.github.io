@@ -311,9 +311,6 @@ Answer: {PlaintextAnswer}{/block:Answer}</a>
             <div class="clear padding30"></div>
             <iframe height="454" width="100%" frameborder="0" allowtransparency="true" scrolling="no" src="https://www.strava.com/athletes/61951671/latest-rides/f96641c9ed8a5a60200cd13cbd1c31d9eff4f96b"></iframe>
 
-            <div class="clear padding30">
-                <a href="https://psnprofiles.com/bug2bug"><img src="https://card.psnprofiles.com/1/bug2bug.png" border="0"></a>
-            </div>
             <div class="clear padding30"></div>
             
             <!-- Search form -->
@@ -361,18 +358,7 @@ Answer: {PlaintextAnswer}{/block:Answer}</a>
                 {/block:Twitter}
                 
                 <div class="clear padding30"></div>
-                
-                {block:IfShowPeopleIFollow}
-                    {block:Following}
-                        <ul class="nav nav-list"><li class="nav-header">{lang:Following}</li></ul>
-                        <div id="following-avatars" style="display:none;">
-                            {block:Followed}<a href="{FollowedURL}"><img src="{FollowedPortraitURL-64}" class="favatar" /></a>{/block:Followed}
-                        </div>
-                    {/block:Following}
-                {/block:IfShowPeopleIFollow}
-                
-                <div class="clear padding30"></div>
-                
+
                 {block:Likes}
                     <ul class="nav nav-list"><li class="nav-header">{lang:Likes}</li></ul>
                     {Likes limit="10" summarize="100" width="150"}
