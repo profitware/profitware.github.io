@@ -123,12 +123,12 @@
                     
                     {block:Photo}
                         <div class="media"><ul class="thumbnails"><li class="thumbnail">{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}</li></ul></div>
-                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+                        {block:Caption}<div class="copy padding20">{Caption}</div>{/block:Caption}
                     {/block:Photo}
                     
                     {block:Video}
                         <div class="media">{Video-500}</div>
-                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+                        {block:Caption}<div class="copy padding20">{Caption}</div>{/block:Caption}
                     {/block:Video}
                     
                     {block:Audio}
@@ -155,7 +155,7 @@
                         
                         <div class="clear"></div>
                         
-                        {block:Caption}<div class="copy">{Caption}</div>{/block:Caption}
+                        {block:Caption}<div class="copy padding20">{Caption}</div>{/block:Caption}
                         
                     {/block:Audio}
                     
@@ -179,7 +179,7 @@
                             {Question}
                         </div>
                         <div class="asker_container"><img src="{AskerPortraitURL-24}">{Asker}</div>
-                        <div class="copy">{Answer}</div>
+                        <div class="copy padding20">{Answer}</div>
                     {/block:Answer}
                     
                     {block:Chat}
@@ -197,7 +197,7 @@
                     
                     {block:Link}
                         <div class="link"><a href="{URL}" {Target}>{Name} &raquo;</a></div>
-                        {block:Description}<div class="copy">{Description}</div>{/block:Description}
+                        {block:Description}<div class="copy padding20">{Description}</div>{/block:Description}
                     {/block:Link}
                     
                     {block:Date}
